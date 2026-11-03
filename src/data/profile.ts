@@ -4,10 +4,9 @@ export type LinkItem = {
   url: string;
 };
 
-// TODO: 보여 주기용 더미 값 — 나중에 진짜 내용으로 교체
 export const profile = {
   name: "박민지",
-  bio: "간호사로 일하다가, 현재는 대웅제약 신사업전략 2팀에서 교육간호사로 일하고 있어요.",
+  bio: "대웅제약 교육간호사 | 새로운 취미 도전중",
   image: "/avatar.svg",
 };
 

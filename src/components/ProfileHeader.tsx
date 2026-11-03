@@ -17,7 +17,7 @@ export default function ProfileHeader({ name, bio, image }: Props) {
         priority
         className="h-40 w-40 rounded-full border-2 border-neutral-900 bg-white object-cover sm:h-48 sm:w-48"
       />
-      <h1 className="mt-5 text-xl font-semibold">{name}</h1>
+      <h1 className="mt-5 text-xl font-bold">{name}</h1>
       <p className="mt-2 text-sm leading-relaxed text-neutral-600">{bio}</p>
     </header>
   );
