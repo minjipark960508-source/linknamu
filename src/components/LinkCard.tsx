@@ -20,11 +20,14 @@ export default function LinkCard({ link, initialCount }: Props) {
     }).catch(() => {});
   };
 
+  // mailto: 링크는 새 탭을 열면 빈 탭이 남으므로 같은 창에서 메일 앱을 연다
+  const isMail = link.url.startsWith("mailto:");
+
   return (
     <a
       href={link.url}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={isMail ? undefined : "_blank"}
+      rel={isMail ? undefined : "noopener noreferrer"}
       onClick={handleClick}
       className="flex w-full items-center justify-between rounded-2xl border-2 border-neutral-900 bg-white px-5 py-4 font-medium shadow-[3px_3px_0_0_#171717] transition active:translate-x-[3px] active:translate-y-[3px] active:shadow-none hover:bg-leaf"
     >
