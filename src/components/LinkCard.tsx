@@ -1,25 +1,12 @@
-"use client";
-
-import { useState } from "react";
 import type { LinkItem } from "@/data/profile";
 
 type Props = {
   link: LinkItem;
-  initialCount: number;
+  count: number;
+  onClick: () => void;
 };
 
-export default function LinkCard({ link, initialCount }: Props) {
-  const [count, setCount] = useState(initialCount);
-
-  const handleClick = () => {
-    setCount((c) => c + 1);
-    // keepalive: 새 탭으로 이동해도 요청이 끝까지 전송되도록
-    fetch(`/api/clicks/${encodeURIComponent(link.id)}`, {
-      method: "POST",
-      keepalive: true,
-    }).catch(() => {});
-  };
-
+export default function LinkCard({ link, count, onClick }: Props) {
   // mailto: 링크는 새 탭을 열면 빈 탭이 남으므로 같은 창에서 메일 앱을 연다
   const isMail = link.url.startsWith("mailto:");
 
@@ -28,12 +15,12 @@ export default function LinkCard({ link, initialCount }: Props) {
       href={link.url}
       target={isMail ? undefined : "_blank"}
       rel={isMail ? undefined : "noopener noreferrer"}
-      onClick={handleClick}
+      onClick={onClick}
       className="flex w-full items-center justify-between rounded-2xl border-2 border-neutral-900 bg-white px-5 py-4 font-medium shadow-[3px_3px_0_0_#171717] transition active:translate-x-[3px] active:translate-y-[3px] active:shadow-none hover:bg-leaf"
     >
       <span>{link.title}</span>
-      <span className="text-xs font-normal text-neutral-500">
-        {count.toLocaleString()} 클릭
+      <span className="text-xs font-normal text-neutral-500 tabular-nums">
+        {count.toLocaleString()}회
       </span>
     </a>
   );
